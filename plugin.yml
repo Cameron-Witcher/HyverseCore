@@ -1,0 +1,24 @@
+name: HyverseCore
+author: QuickScythe
+version: ALPHA
+description: Runs on all Hyverse servers
+main: me.quickscythe.hyversecore.Main
+commands:
+  sql:
+    usage: /sql [query]
+    description: Run SQL commands from inside Minecraft!
+  settings:
+    usage: /settings
+    description: Alter your settings!
+  pet:
+    usage: /pet
+    description: Summon a pet to follow you!
+  debug:
+    usage: /debug
+    description: Toggles debug messages
+  item:
+    usage: /item <item> [player|all]
+    description: Gives player a predefined custom item.
+  grl:
+    usage: /grl
+    description: Kicks all players from the server while reloading. HyverseBungeeCore reconnects all kicked players after the reload is complete.
