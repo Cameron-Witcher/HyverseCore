@@ -2,17 +2,13 @@ package me.quickscythe.hyversecore.listeners;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.block.Chest;
+import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import me.quickscythe.hyversecore.Main;
 import me.quickscythe.hyversecore.utils.CoreUtils;
@@ -62,7 +58,7 @@ public class PlayerListener implements Listener {
 					((Player) e.getWhoClicked()).getLocation());
 			e.getWhoClicked().closeInventory();
 			e.getWhoClicked().removeMetadata("petinv", Main.getPlugin());
-			p.setInvisible(true);
+			((ArmorStand)p).setVisible(false);
 		}
 	}
 	

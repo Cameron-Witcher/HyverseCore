@@ -13,7 +13,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-@SuppressWarnings("deprecation")
 public class InventoryCreator {
 
 	String name;
@@ -32,7 +31,6 @@ public class InventoryCreator {
 	public void addItem(ItemStack item, String name, char identifier, List<String> lore, short value) {
 
 		if (item != null && (item.getType() != Material.AIR)) {
-			item.setDurability(value);
 			ItemMeta im = item.getItemMeta();
 			im.setDisplayName(CoreUtils.colorize(name));
 			if (lore != null) {
@@ -70,7 +68,6 @@ public class InventoryCreator {
 	public void addItem(ItemStack item, String name, char identifier, List<String> lore, short value, boolean showValues) {
 
 		if (item != null && (item.getType() != Material.AIR)) {
-			item.setDurability(value);
 			ItemMeta im = item.getItemMeta();
 			im.setDisplayName(CoreUtils.colorize(name));
 			if (lore != null) {
@@ -80,7 +77,7 @@ public class InventoryCreator {
 				}
 			}
 			if(!showValues){
-				im.spigot().setUnbreakable(true);
+				im.setUnbreakable(true);
 				im.addItemFlags(ItemFlag.values());
 			}
 			
@@ -94,7 +91,6 @@ public class InventoryCreator {
 	public void addItem(ItemStack item, String name, char identifier, String[] lore, short value, boolean showValues) {
 
 		if (item != null && (item.getType() != Material.AIR)) {
-			item.setDurability(value);
 			ItemMeta im = item.getItemMeta();
 			im.setDisplayName(CoreUtils.colorize(name));
 			if (lore != null) {
@@ -104,7 +100,7 @@ public class InventoryCreator {
 				}
 			}
 			if(!showValues){
-				im.spigot().setUnbreakable(true);
+				im.setUnbreakable(true);
 				im.addItemFlags(ItemFlag.values());
 			}
 			
@@ -118,14 +114,13 @@ public class InventoryCreator {
 	public void addItem(ItemStack item, String name, char identifier, List<String> lore, short value, boolean unbreakable, boolean showValues) {
 
 		if (item != null && (item.getType() != Material.AIR)) {
-			item.setDurability(value);
 			ItemMeta im = item.getItemMeta();
 			im.setDisplayName(CoreUtils.colorize(name));
 			if (lore != null) {
 
 				im.setLore(CoreUtils.colorizeStringList(lore));
 			}
-			im.spigot().setUnbreakable(unbreakable);
+			im.setUnbreakable(true);
 			if(!showValues) im.addItemFlags(ItemFlag.values());
 			item.setItemMeta(im);
 		}
@@ -134,14 +129,13 @@ public class InventoryCreator {
 	public void addItem(ItemStack item, String name, char identifier, String[] lore, short value, boolean unbreakable, boolean showValues) {
 
 		if (item != null && (item.getType() != Material.AIR)) {
-			item.setDurability(value);
 			ItemMeta im = item.getItemMeta();
 			im.setDisplayName(CoreUtils.colorize(name));
 			if (lore != null) {
 
 				im.setLore(CoreUtils.colorizeStringList(lore));
 			}
-			im.spigot().setUnbreakable(unbreakable);
+			im.setUnbreakable(true);
 			if(!showValues) im.addItemFlags(ItemFlag.values());
 			item.setItemMeta(im);
 		}
@@ -153,7 +147,6 @@ public class InventoryCreator {
 	public void editItem(char identifier, ItemStack item, String name, List<String> lore, short value) {
 
 		if (item != null && (item.getType() != Material.AIR)) {
-			item.setDurability(value);
 			ItemMeta im = item.getItemMeta();
 			im.setDisplayName(CoreUtils.colorize(name));
 			if (lore != null) {
@@ -168,7 +161,6 @@ public class InventoryCreator {
 	public void editItem(char identifier, ItemStack item, String name, String[] lore, short value) {
 
 		if (item != null && (item.getType() != Material.AIR)) {
-			item.setDurability(value);
 			ItemMeta im = item.getItemMeta();
 			im.setDisplayName(CoreUtils.colorize(name));
 			if (lore != null) {

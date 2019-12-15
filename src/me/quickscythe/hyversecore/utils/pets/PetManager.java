@@ -10,7 +10,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.craftbukkit.v1_14_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_15_R1.CraftWorld;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -120,7 +120,7 @@ public class PetManager {
 	public static void removePets() {
 		for (Pet rpet : rpets) {
 			pets.remove(rpet);
-			rpet.killEntity();
+			((ArmorStand)rpet).remove();
 		}
 		rpets.clear();
 

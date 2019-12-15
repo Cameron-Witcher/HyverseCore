@@ -378,7 +378,7 @@ public class CoreUtils {
 			}
 
 			if (item.isSet(name + ".Options.Unbreakable")) {
-				a.spigot().setUnbreakable(Boolean.parseBoolean(item.getString(name + ".Options.Unbreakable")));
+				a.setUnbreakable(Boolean.parseBoolean(item.getString(name + ".Options.Unbreakable")));
 			}
 			List<String> lore = new ArrayList<>();
 			if (item.isSet(name + ".Lore")) {
@@ -679,7 +679,7 @@ public class CoreUtils {
 		return i.clone();
 	}
 	
-	public static net.minecraft.server.v1_14_R1.Entity spawnEntity(net.minecraft.server.v1_14_R1.Entity entity,
+	public static net.minecraft.server.v1_15_R1.Entity spawnEntity(net.minecraft.server.v1_15_R1.Entity entity,
 			Location loc) {
 
 		try {

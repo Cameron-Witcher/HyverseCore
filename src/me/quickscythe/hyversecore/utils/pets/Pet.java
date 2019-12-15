@@ -11,8 +11,8 @@ import org.bukkit.entity.Player;
 
 import me.quickscythe.hyversecore.Main;
 import me.quickscythe.hyversecore.utils.CoreUtils;
-import net.minecraft.server.v1_14_R1.EntityArmorStand;
-import net.minecraft.server.v1_14_R1.World;
+import net.minecraft.server.v1_15_R1.EntityArmorStand;
+import net.minecraft.server.v1_15_R1.World;
 
 public class Pet extends EntityArmorStand {
 
@@ -76,8 +76,8 @@ public class Pet extends EntityArmorStand {
 			Bukkit.getScheduler().runTaskLater(Main.getPlugin(), new MovePet(this, sideMot, forMot), 1);
 			return;
 		}
-		distance = Math.sqrt(Math.pow(Bukkit.getPlayer(owner).getLocation().getX() - locX, 2)
-				+ Math.pow(Bukkit.getPlayer(owner).getLocation().getZ() - locZ, 2));
+		distance = Math.sqrt(Math.pow(Bukkit.getPlayer(owner).getLocation().getX() - locX(), 2)
+				+ Math.pow(Bukkit.getPlayer(owner).getLocation().getZ() - locX(), 2));
 
 		if (distance > 4) {
 
@@ -148,14 +148,14 @@ public class Pet extends EntityArmorStand {
 
 		dx = 0;
 		dz = 0;
-		this.yaw = (float) Math.toDegrees(Math.atan2(Bukkit.getPlayer(owner).getLocation().getZ() - locZ,
-				Bukkit.getPlayer(owner).getLocation().getX() - locX)) - 90;
-		if ((new Location(getWorld().getWorld(), locX + 1, locY, locZ).getBlock().getType() != Material.AIR)
-				|| (new Location(getWorld().getWorld(), locX, locY, locZ + 1).getBlock().getRelative(BlockFace.DOWN).getType() != Material.AIR)
-				|| (new Location(getWorld().getWorld(), locX - 1, locY, locZ).getBlock().getRelative(BlockFace.DOWN).getType() != Material.AIR)
-				|| new Location(getWorld().getWorld(), locX, locY, locZ - 1).getBlock().getRelative(BlockFace.DOWN).getType() != Material.AIR) {
-			if (new Location(getWorld().getWorld(), locX, locY - 1, locZ).getBlock().getRelative(BlockFace.DOWN).getType() != Material.AIR) {
-				locY = locY + 1.1;
+		this.yaw = (float) Math.toDegrees(Math.atan2(Bukkit.getPlayer(owner).getLocation().getZ() - locZ(),
+				Bukkit.getPlayer(owner).getLocation().getX() - locX())) - 90;
+		if ((new Location(getWorld().getWorld(), locX() + 1, locY(), locZ()).getBlock().getType() != Material.AIR)
+				|| (new Location(getWorld().getWorld(), locX(), locY(), locZ() + 1).getBlock().getRelative(BlockFace.DOWN).getType() != Material.AIR)
+				|| (new Location(getWorld().getWorld(), locX() - 1, locY(), locZ()).getBlock().getRelative(BlockFace.DOWN).getType() != Material.AIR)
+				|| new Location(getWorld().getWorld(), locX(), locY(), locZ() - 1).getBlock().getRelative(BlockFace.DOWN).getType() != Material.AIR) {
+			if (new Location(getWorld().getWorld(), locX(), locY() - 1, locZ()).getBlock().getRelative(BlockFace.DOWN).getType() != Material.AIR) {
+				this.setLocation(locX(), locY()+1.1, locZ(), 0, 0);
 			}
 		}
 		if (distance > 2) {
