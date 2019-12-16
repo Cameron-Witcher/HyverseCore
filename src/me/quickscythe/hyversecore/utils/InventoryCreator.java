@@ -57,7 +57,6 @@ public class InventoryCreator {
 				}
 			}
 			item.setItemMeta(im);
-			Bukkit.getConsoleSender().sendMessage(identifier + " : " + item.getItemMeta().getDisplayName());
 			
 		}
 		this.identifier.put(identifier, item);
@@ -213,7 +212,6 @@ public class InventoryCreator {
 	public void setConfiguration(ArrayList<Character> ids) {
 		for (Character ch : ids){
 			items.add(identifier.get(ch));
-			Bukkit.getConsoleSender().sendMessage(identifier.get(ch).getItemMeta().getDisplayName() + " : " + ch);
 		}
 	}
 

@@ -131,6 +131,8 @@ public class CoreUtils {
 		}
 		PetManager.registerPets();
 	}
+	
+
 
 	public static void sendPluginMessage(Player player, String channel, String... arguments) {
 		ByteArrayDataOutput out = ByteStreams.newDataOutput();
