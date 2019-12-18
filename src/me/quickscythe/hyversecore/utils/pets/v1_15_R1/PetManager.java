@@ -1,7 +1,8 @@
-package me.quickscythe.hyversecore.utils.pets;
+package me.quickscythe.hyversecore.utils.pets.v1_15_R1;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.craftbukkit.v1_15_R1.CraftWorld;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
+import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
@@ -20,6 +22,9 @@ import org.bukkit.metadata.FixedMetadataValue;
 import me.quickscythe.hyversecore.Main;
 import me.quickscythe.hyversecore.utils.CoreUtils;
 import me.quickscythe.hyversecore.utils.InventoryCreator;
+import me.quickscythe.hyversecore.utils.pets.PetType;
+import me.quickscythe.hyversecore.utils.reflection.PackageType;
+import me.quickscythe.hyversecore.utils.reflection.ReflectionUtils;
 
 public class PetManager {
 
@@ -148,7 +153,7 @@ public class PetManager {
 
 		if (hasPet(owner)) {
 			if (owner.hasPermission("hyverse.pets.multipets")) {
-				Pet p = (Pet) CoreUtils.spawnEntity(new Pet(((CraftWorld) loc.getWorld()).getHandle()), loc);
+				Pet p = (Pet) PetManager.spawnEntity(new Pet(((CraftWorld) loc.getWorld()).getHandle()), loc);
 				p.setOwner(owner.getUniqueId());
 				p.setType(getPetType(type));
 				CoreUtils.debug(getPetType(type) + " - ");
@@ -165,7 +170,7 @@ public class PetManager {
 			}
 		} else {
 
-			Pet p = (Pet) CoreUtils.spawnEntity(new Pet(((CraftWorld) loc.getWorld()).getHandle()), loc);
+			Pet p = (Pet) PetManager.spawnEntity(new Pet(((CraftWorld) loc.getWorld()).getHandle()), loc);
 			p.setOwner(owner.getUniqueId());
 			p.setType(getPetType(type));
 			CoreUtils.debug(getPetType(type) + " - ");
@@ -214,6 +219,31 @@ public class PetManager {
 		c = null;
 		return inv.getInventory();
 
+	}
+	public static net.minecraft.server.v1_15_R1.Entity spawnEntity(net.minecraft.server.v1_15_R1.Entity entity,
+			Location loc) {
+
+		try {
+			// Object craftEntity =
+			// PackageType.MINECRAFT_SERVER.getClass("Entity").cast(entity);
+			// Object mEntity = ReflectionUtils.invokeMethod(craftEntity,
+			// "getHandle");
+
+			ReflectionUtils.invokeMethod(entity, "setLocation", loc.getX(), loc.getY(), loc.getZ(), loc.getYaw(),
+					loc.getPitch());
+
+			ReflectionUtils
+					.invokeMethod(
+							ReflectionUtils.invokeMethod(
+									PackageType.CRAFTBUKKIT.getClass("CraftWorld").cast(loc.getWorld()), "getHandle"),
+							"addEntity", entity, SpawnReason.CUSTOM);
+		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException
+				| ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return entity;
 	}
 
 }

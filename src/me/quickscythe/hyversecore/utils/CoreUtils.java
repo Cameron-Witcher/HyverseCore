@@ -15,13 +15,10 @@ import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.Server.Spigot;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -33,7 +30,7 @@ import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 
 import me.quickscythe.hyversecore.Main;
-import me.quickscythe.hyversecore.utils.pets.PetManager;
+import me.quickscythe.hyversecore.utils.pets.v1_15_R1.PetManager;
 import me.quickscythe.hyversecore.utils.reflection.PackageType;
 import me.quickscythe.hyversecore.utils.reflection.ReflectionUtils;
 import ru.tehkode.permissions.PermissionGroup;
@@ -131,6 +128,7 @@ public class CoreUtils {
 		}
 		PetManager.registerPets();
 	}
+	
 	
 
 
@@ -680,31 +678,9 @@ public class CoreUtils {
 			CoreUtils.food.put(name, info);
 		return i.clone();
 	}
+
 	
-	public static net.minecraft.server.v1_15_R1.Entity spawnEntity(net.minecraft.server.v1_15_R1.Entity entity,
-			Location loc) {
-
-		try {
-			// Object craftEntity =
-			// PackageType.MINECRAFT_SERVER.getClass("Entity").cast(entity);
-			// Object mEntity = ReflectionUtils.invokeMethod(craftEntity,
-			// "getHandle");
-
-			ReflectionUtils.invokeMethod(entity, "setLocation", loc.getX(), loc.getY(), loc.getZ(), loc.getYaw(),
-					loc.getPitch());
-
-			ReflectionUtils
-					.invokeMethod(
-							ReflectionUtils.invokeMethod(
-									PackageType.CRAFTBUKKIT.getClass("CraftWorld").cast(loc.getWorld()), "getHandle"),
-							"addEntity", entity, SpawnReason.CUSTOM);
-		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException
-				| ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return entity;
-	}
+	
+	
 
 }

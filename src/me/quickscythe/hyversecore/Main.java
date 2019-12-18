@@ -13,7 +13,7 @@ import me.quickscythe.hyversecore.commands.SettingsCommand;
 import me.quickscythe.hyversecore.listeners.PlayerListener;
 import me.quickscythe.hyversecore.runnables.DateChecker;
 import me.quickscythe.hyversecore.utils.CoreUtils;
-import me.quickscythe.hyversecore.utils.pets.PetManager;
+import me.quickscythe.hyversecore.utils.pets.v1_15_R1.PetManager;
 
 public class Main extends JavaPlugin {
 	

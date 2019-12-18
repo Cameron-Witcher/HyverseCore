@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.metadata.FixedMetadataValue;
 
 import me.quickscythe.hyversecore.Main;
-import me.quickscythe.hyversecore.utils.pets.PetManager;
+import me.quickscythe.hyversecore.utils.pets.v1_15_R1.PetManager;
 
 public class PetCommand implements CommandExecutor {
 

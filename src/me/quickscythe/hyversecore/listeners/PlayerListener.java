@@ -12,8 +12,8 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 import me.quickscythe.hyversecore.Main;
 import me.quickscythe.hyversecore.utils.CoreUtils;
-import me.quickscythe.hyversecore.utils.pets.Pet;
-import me.quickscythe.hyversecore.utils.pets.PetManager;
+import me.quickscythe.hyversecore.utils.pets.v1_15_R1.Pet;
+import me.quickscythe.hyversecore.utils.pets.v1_15_R1.PetManager;
 
 public class PlayerListener implements Listener {
 

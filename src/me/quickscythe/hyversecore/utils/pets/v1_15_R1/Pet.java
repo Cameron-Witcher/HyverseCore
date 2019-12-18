@@ -1,4 +1,4 @@
-package me.quickscythe.hyversecore.utils.pets;
+package me.quickscythe.hyversecore.utils.pets.v1_15_R1;
 
 import java.util.UUID;
 
@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 
 import me.quickscythe.hyversecore.Main;
 import me.quickscythe.hyversecore.utils.CoreUtils;
+import me.quickscythe.hyversecore.utils.pets.PetType;
 import net.minecraft.server.v1_15_R1.EntityArmorStand;
 import net.minecraft.server.v1_15_R1.World;
 

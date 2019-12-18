@@ -1,4 +1,4 @@
-package me.quickscythe.hyversecore.utils.pets;
+package me.quickscythe.hyversecore.utils.pets.v1_15_R1;
 
 public class MovePet implements Runnable {
 
