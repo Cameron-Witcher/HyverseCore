@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -38,8 +39,8 @@ import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 public class CoreUtils {
 
-	// TODO Make it read this info from a file for christ sakes!!
 	private static IDatabase db = new IDatabase("localhost", "Minecraft", 3306, "mysql", "v4pob8LW");
+	private static IDatabase wbconn = new IDatabase("localhost", "Website", 3306, "mysql", "v4pob8LW");
 	private static boolean connected = false;
 	private static Holiday holiday = Holiday.NONE;
 	private static Date date = new Date();
@@ -160,6 +161,34 @@ public class CoreUtils {
 		} else {
 			return hr + ":" + min + " AM";
 		}
+	}
+	
+	public static int registerPlayer(String webName, Player player) throws SQLException {
+		if(isPlayerRegistered(webName, player)) return -100;
+		return wbconn.update("UPDATE Users SET REGISTERED='waiting',MINECRAFT_UUID='" + player.getUniqueId() + "' WHERE USERNAME='" + webName + "'");
+	
+	}
+	
+	private static boolean isPlayerRegistered(String webName, Player player) throws SQLException {
+		
+		
+		wbconn.init();
+		ResultSet rs = wbconn.query("SELECT * FROM Users");
+		while(rs.next()) {
+			if(rs.getString("USERNAME").equalsIgnoreCase(webName)) {
+				try {
+				if(!rs.getString("REGISTERED").equalsIgnoreCase("true"))
+					return false;
+				else return true;
+				} catch(NullPointerException ex) {
+					return false;
+				}
+				
+			}
+			
+		}
+		return false;
+		
 	}
 
 	public static ResultSet sendQuery(String query) {
@@ -309,6 +338,7 @@ public class CoreUtils {
 	
 	public static void debug(String message) {
 		if(debug) Bukkit.broadcastMessage(colorize("&eDebug &7> &f" + message));
+		Bukkit.getConsoleSender().sendMessage(colorize("&eDebug &7>&f " + message));
 	}
 	
 	public static String encryptItemStack(ItemStack i) {

@@ -1,7 +1,8 @@
 name: HyverseCore
 author: QuickScythe
-version: ALPHA
+version: 1.0.0
 description: Runs on all Hyverse servers
+api-version: 1.13
 main: me.quickscythe.hyversecore.Main
 commands:
   sql:
@@ -9,7 +10,10 @@ commands:
     description: Run SQL commands from inside Minecraft!
   settings:
     usage: /settings
-    description: Alter your settings!
+    description: Alter your settings.
+  register:
+    usage: /register <web name>
+    description: Link your web Account and Minecraft account.
   pet:
     usage: /pet
     description: Summon a pet to follow you!
